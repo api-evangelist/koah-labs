@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/api
+docs: https://docs.koahlabs.com/api
+notes: >-
+  Derived from the published API reference rather than an OpenAPI document —
+  Koah publishes no machine-readable spec. Two distinct credentials exist: an
+  API token for the REST API, and a publisher ID that identifies the app to the
+  client SDKs. The publisher ID is a public client-side identifier, not a secret.
+summary:
+  types: [http]
+  api_key_in: [header]
+  oauth2_flows: []
+  oauth2: false
+  openid_connect: false
+  mtls: false
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  format: 'Authorization: Bearer [example key]'
+  applies_to: https://app.koah.ai/api
+  issuance: Koah dashboard, Settings > API Tokens
+  audience: publisher team accounts only
+  source: https://docs.koahlabs.com/api
+  notes: >-
+    "All API requests require authentication using API keys. You can obtain your
+    API key from your Koah dashboard under the Settings section." The reporting
+    reference adds that only publisher accounts can access the reporting
+    endpoints; advertiser accounts are rejected.
+client_identifiers:
+- name: publisherId
+  type: public-identifier
+  secret: false
+  applies_to: Ad SDK (JavaScript, React, React Native, Flutter, iOS, Android)
+  issuance: Koah dashboard, Settings > Integration
+  dashboard_url: https://app.koah.ai/publisher/settings?tab=integration
+  transport: query parameter on the web script tag; constructor/config argument on mobile SDKs
+  source: https://docs.koahlabs.com/definitions
+- name: advertiserId
+  type: public-identifier
+  secret: false
+  applies_to: Conversion Tracking pixel
+  dashboard_url: https://app.koah.ai/advertiser/settings?tab=brand
+  source: https://raw.githubusercontent.com/koahlabs/skills/HEAD/skills/koah-integration/SKILL.md
+auth_errors:
+- {status: 401, meaning: Unauthorized — missing or invalid bearer token}
+- {status: 403, meaning: Forbidden — token valid but the account type may not access this resource}
