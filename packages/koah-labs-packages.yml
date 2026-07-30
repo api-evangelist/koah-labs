@@ -1,0 +1,64 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/sdk
+notes: >-
+  Verified directly against the public registries on 2026-07-19. The web SDK is not
+  distributed through npm — it is loaded from a first-party script tag. A dedicated
+  React wrapper is documented as planned but not yet published.
+packages:
+- language: javascript
+  registry: script-tag
+  name: koah web SDK
+  url: https://docs.koahlabs.com/sdk/javascript
+  install: <script async src="https://app.koah.ai/js?token=<YOUR_PUBLISHER_ID>"></script>
+  official: true
+  verified: '2026-07-19'
+  notes: Loaded from app.koah.ai; exposes window.koah.requestAd. Not published to npm.
+- language: typescript
+  registry: npm
+  name: koah-react-native
+  version: 0.10.1
+  url: https://www.npmjs.com/package/koah-react-native
+  repository: https://github.com/koahlabs/koah-react-native
+  install: npm i -s koah-react-native @react-native-async-storage/async-storage react-native-device-info react-native-webview
+  install_expo: npx expo install koah-react-native expo-file-system expo-application expo-device react-native-webview
+  official: true
+  verified: '2026-07-19'
+  registry_status: 200
+- language: dart
+  registry: pub.dev
+  name: koah_flutter
+  version: 0.1.3
+  url: https://pub.dev/packages/koah_flutter
+  install: 'dependencies: { koah_flutter: ^0.1.3 }'
+  official: true
+  verified: '2026-07-19'
+  registry_status: 200
+- language: kotlin
+  registry: maven-central
+  name: com.koahlabs:koah-android
+  version: 0.2.1
+  url: https://repo1.maven.org/maven2/com/koahlabs/koah-android/
+  install: implementation("com.koahlabs:koah-android:0.2.1")
+  official: true
+  verified: '2026-07-19'
+  registry_status: 200
+  notes: >-
+    Present on Maven Central (maven-metadata.xml lists 0.0.1 through 0.2.1); the
+    search.maven.org solr index returned no rows for the group at probe time.
+- language: swift
+  registry: swift-package-manager
+  name: KoahAds
+  version: 0.9.1
+  url: https://github.com/koahlabs/swift-package-manager-koah-ads
+  install: '.package(url: "https://github.com/koahlabs/swift-package-manager-koah-ads", from: "0.9.1")'
+  official: true
+  verified: '2026-07-19'
+  notes: Also distributed as a manual XCFramework. CocoaPods is explicitly not supported.
+not_found:
+- registry: npm
+  probed: ['@koah/sdk', 'koah', '@koahlabs/sdk', 'koah-sdk', '@koah/react', 'koah-js']
+  status: 404
+- registry: pypi
+  probed: [koah]
+  status: 404

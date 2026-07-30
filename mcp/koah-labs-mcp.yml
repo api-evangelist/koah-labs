@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://docs.koahlabs.com/api
+notes: >-
+  Koah publishes NO MCP server. Searched the docs, the koahlabs GitHub org, and the
+  npm registry — no hosted, remote, or stdio MCP server exists. The tools below are
+  a candidate surface derived from the six documented REST operations, offered as a
+  design starting point only. Because no server is genuinely present, NO MCPServer
+  pointer is wired into apis.yml — emitting one would misrepresent the provider.
+  Koah's actual agent-facing investment is an Agent Skill (see skills/) plus llms.txt
+  on both hosts.
+server:
+  published: false
+  name: null
+  transport: null
+  url: null
+searched:
+- {surface: 'https://docs.koahlabs.com/llms.txt', result: no MCP entry}
+- {surface: 'https://github.com/koahlabs', result: 'no MCP repo (repos: .github, OpenClio, skills, swift-package-manager-koah-ads, swift-package-manager-koah-ads-admob)'}
+- {surface: npm registry, result: no koah MCP package}
+candidate_tools:
+- name: create_publisher
+  description: Create a publisher under the authenticated publisher team account.
+  source_operation: 'POST https://app.koah.ai/api/publishers'
+  inputs: [name, reference_id]
+  write: true
+- name: list_publishers
+  description: List all publishers under the authenticated publisher team account.
+  source_operation: 'GET https://app.koah.ai/api/publishers'
+  inputs: []
+  write: false
+- name: get_publisher
+  description: Retrieve a single publisher by id, including its query selectors.
+  source_operation: 'GET https://app.koah.ai/api/publishers/:id'
+  inputs: [id]
+  write: false
+- name: update_publisher
+  description: Update a publisher's mutable fields.
+  source_operation: 'PATCH https://app.koah.ai/api/publishers/:id'
+  inputs: [id, name]
+  write: true
+- name: get_team_report
+  description: Fetch daily performance metrics across the whole publisher team for a date range of up to 90 days.
+  source_operation: 'GET https://app.koah.ai/api/publishers/report'
+  inputs: [starts_at, ends_at]
+  write: false
+- name: get_publisher_report
+  description: Fetch daily performance metrics for one publisher for a date range of up to 90 days.
+  source_operation: 'GET https://app.koah.ai/api/publishers/:id/report'
+  inputs: [id, starts_at, ends_at]
+  write: false
+auth:
+  scheme: http-bearer
+  header: 'Authorization: Bearer YOUR_API_TOKEN'
+  detail: ../authentication/koah-labs-authentication.yml

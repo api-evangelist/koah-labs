@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/api
+docs:
+- https://docs.koahlabs.com/api
+- https://docs.koahlabs.com/concepts/how-it-works
+cross_links:
+  authentication: authentication/koah-labs-authentication.yml
+  errors: errors/koah-labs-problem-types.yml
+  lifecycle: lifecycle/koah-labs-lifecycle.yml
+  data_model: data-model/koah-labs-data-model.yml
+architecture:
+  style: REST
+  base_url: https://app.koah.ai/api
+  encoding: JSON
+  evidence: >-
+    "The Koah API is organized around REST. Our API has resource-oriented URLs,
+    uses JSON encoded responses, and uses standard HTTP response codes,
+    authentication, and verbs."
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer YOUR_API_TOKEN'
+  detail: authentication/koah-labs-authentication.yml
+idempotency:
+  rest_api:
+    supported: false
+    idempotency_key_header: null
+    notes: >-
+      The REST API documents no Idempotency-Key header. POST /api/publishers is
+      not documented as idempotent. reference_id is a caller-supplied external
+      identifier on a publisher but is not documented as a dedup key.
+  client_sdk:
+    supported: true
+    mechanism: caller-supplied cache key / request-argument dedup
+    key_name: cacheKey
+    scope: ad request per placement
+    platforms: [ios, android, flutter, react-native]
+    web_behavior: key derived automatically from the request arguments
+    evidence: >-
+      "Koah caches and dedupes ad requests automatically. The cache key is derived
+      from the request arguments. This lets the SDK: Dedupe redundant requests when
+      a component re-renders with the same context, and Reuse a cached result until
+      it expires." … "On the mobile SDKs (iOS, Android, Flutter, React Native) you
+      also pass an explicit cacheKey — a stable string identifying the placement (a
+      message ID, a feed-row ID, a screen name). Reuse the same key across
+      re-renders of a slot so they share one cached result."
+    source: https://docs.koahlabs.com/concepts/how-it-works
+  conversion_pixel:
+    supported: true
+    mechanism: event deduplication on a caller-supplied event id
+    key_name: event_id
+    retention: 24 hours
+    evidence: >-
+      "the pixel deduplicates events on event_id within a 24h window. Generate a
+      unique event_id per real event."
+    source: https://raw.githubusercontent.com/koahlabs/skills/HEAD/skills/koah-integration/SKILL.md
+  summary: >-
+    Koah's idempotency contract is client-side request/event deduplication keyed by
+    a caller-supplied identifier (cacheKey on the ad SDKs, event_id on the
+    conversion pixel), NOT a server-side Idempotency-Key header on the REST API.
+    The Idempotency pointer in apis.yml refers to this documented dedup contract.
+pagination:
+  supported: false
+  notes: >-
+    GET /api/publishers returns a bare {"publishers": [...]} array with no page,
+    cursor, limit, or offset parameters documented and no pagination metadata in
+    the response. Reporting is bounded by a date range instead (max 90 days).
+filtering:
+  reporting:
+    params: [starts_at, ends_at]
+    format: ISO date (YYYY-MM-DD)
+    constraint: range must be positive and must not exceed 90 days
+    source: https://docs.koahlabs.com/api/reporting
+field_expansion:
+  supported: false
+metadata:
+  supported: partial
+  fields:
+  - {resource: publisher, field: reference_id, purpose: caller-supplied external identifier}
+request_tracing:
+  request_id_header: null
+  supported: false
+  notes: No request-id or correlation header is documented.
+versioning:
+  in_path: false
+  header: null
+  detail: lifecycle/koah-labs-lifecycle.yml
+error_envelope:
+  format: undocumented
+  problem_json: false
+  detail: errors/koah-labs-problem-types.yml
+rate_limiting:
+  signalled: true
+  status: 429
+  headers: undocumented
+  limits_published: false
+  notes: A 429 is documented but no quota values or RateLimit/Retry-After headers are published.
+timestamps:
+  format: RFC 3339 / ISO 8601 UTC
+  example: '2026-03-01T12:00:00Z'
+identifiers:
+  style: opaque string
+  prefixed: false
+  notes: Publisher ids are documented only as "string-unique-identifier"; no id prefix scheme is published.

@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/koahlabs/skills
+notes: >-
+  Koah publishes its own Agent Skill. The file below is saved verbatim from the
+  provider's public repository — it is not a pipeline generation. Koah also
+  distributes it as a Claude plugin marketplace entry and serves a copy at
+  https://docs.koahlabs.com/SKILL.md.
+skills:
+- file: koah-labs-koah-integration.md
+  name: koah-integration
+  description: >-
+    Install Koah's Ad SDK (publishers monetizing AI apps with native ads) or the
+    Koah pixel for Conversion Tracking (advertisers measuring event ROI).
+  publisher: Koah Labs
+  method: searched
+  source: https://raw.githubusercontent.com/koahlabs/skills/HEAD/skills/koah-integration/SKILL.md
+  distribution:
+  - https://github.com/koahlabs/skills
+  - https://docs.koahlabs.com/SKILL.md
+  covers:
+  - Ad SDK install for iOS, Android, Flutter, React Native, React, JavaScript
+  - Conversion Tracking pixel install for manual, Google Tag Manager, Webflow, Framer
+  verification_steps:
+  - KoahCard (or platform equivalent) renders without errors
+  - at least one ad displays in the test environment
+  - debug logs show successful /k/init and /query requests

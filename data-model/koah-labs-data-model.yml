@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/definitions
+docs:
+- https://docs.koahlabs.com/definitions
+- https://docs.koahlabs.com/api/publishers
+- https://docs.koahlabs.com/api/reporting
+- https://docs.koahlabs.com/conversion-tracking/events
+notes: >-
+  Koah publishes no OpenAPI, so this graph is built from the published object
+  reference and API reference rather than derived from spec $refs. Field lists are
+  limited to fields the docs actually show; nothing is inferred.
+identities:
+- name: advertiser
+  description: Businesses promoting products through Koah's network. Create campaigns, set budgets and targeting, supply creative, track ROI, pay for placements.
+- name: publisher
+  description: Owners/operators of AI applications who integrate the SDK to monetize. Provide placements, earn revenue, access performance analytics.
+entities:
+- name: Publisher
+  api_resource: /api/publishers
+  description: An entity under a publisher team account.
+  id_prefix: none published
+  fields:
+  - {name: id, type: string, notes: opaque unique identifier}
+  - {name: name, type: string, required: true}
+  - {name: reference_id, type: string, notes: caller-supplied external identifier}
+  - {name: created_at, type: string, format: rfc3339}
+  - {name: query_selectors, type: array}
+  - {name: 'query_selectors[].value', type: string, example: '.search-input'}
+  - {name: 'query_selectors[].ad_type', type: string, example: suffix}
+  operations:
+  - {method: POST, path: /api/publishers, summary: Create a publisher}
+  - {method: GET, path: /api/publishers, summary: List publishers}
+  - {method: GET, path: '/api/publishers/:id', summary: Get a publisher}
+  - {method: PATCH, path: '/api/publishers/:id', summary: Update a publisher}
+- name: PublisherReport
+  api_resource: /api/publishers/report
+  description: Daily aggregated performance metrics.
+  fields:
+  - {name: date, type: string}
+  - {name: queries, type: integer}
+  - {name: queries_with_ad, type: integer}
+  - {name: fill_rate, type: float, formula: queries_with_ad / queries * 100}
+  - {name: impressions, type: integer}
+  - {name: clicks, type: integer}
+  - {name: ctr, type: float, formula: clicks / impressions * 100}
+  - {name: ecpc, type: float}
+  - {name: ecpm, type: float}
+  - {name: revenue, type: float}
+  operations:
+  - {method: GET, path: /api/publishers/report, summary: Get team report}
+  - {method: GET, path: '/api/publishers/:id/report', summary: Get publisher report}
+- name: Campaign
+  description: Highest level of advertiser organization — overall objective, strategy, and budget across ad groups.
+  api_resource: none published
+- name: AdGroup
+  description: A set of ads sharing targeting and spend settings.
+  api_resource: none published
+- name: Ad
+  description: The creative content unit displayed to users (text, image, or other formats).
+  api_resource: none published
+- name: AdContext
+  description: The request-time context passed to the SDK that Koah matches an ad against.
+  context_types: [conversation, feed]
+  fields:
+  - {name: type, example: conversation}
+  - {name: question, notes: user message}
+  - {name: answer, notes: AI response}
+  source: https://docs.koahlabs.com/concepts/ad-context
+- name: AdResult
+  description: Return value of a web requestAd call.
+  shape: '{ filled: boolean; fromCache?: boolean }'
+  source: https://docs.koahlabs.com/sdk/javascript/reference
+- name: Slot
+  description: A named, dashboard-registered placement used to organize and optimize inventory.
+  source: https://docs.koahlabs.com/concepts/slots
+- name: Experiment
+  description: A named tag for A/B testing ad configurations.
+  source: https://docs.koahlabs.com/concepts/experiments
+- name: ConversionEvent
+  description: An event fired by the Koah pixel on an advertiser's site.
+  types: [PageView, ViewContent, Search, AddToCart, AddToWishlist, InitiateCheckout, Purchase, Lead, SignUp]
+  fields:
+  - {name: currency, type: string, notes: ISO 4217 three-letter code}
+  - {name: value, type: number}
+  - {name: products, type: 'Array<Object>'}
+  - {name: 'products[].id', type: string}
+  - {name: 'products[].name', type: string}
+  - {name: 'products[].category', type: string}
+  source: https://docs.koahlabs.com/conversion-tracking/events
+relationships:
+- {from: PublisherTeam, to: Publisher, kind: has_many, via: bearer token scope}
+- {from: Publisher, to: PublisherReport, kind: has_many, via: 'publisher id in /api/publishers/:id/report'}
+- {from: Publisher, to: Slot, kind: has_many, via: slot name registered in the dashboard}
+- {from: Publisher, to: 'query_selectors', kind: has_many, via: embedded array}
+- {from: Advertiser, to: Campaign, kind: has_many}
+- {from: Campaign, to: AdGroup, kind: has_many}
+- {from: AdGroup, to: Ad, kind: has_many}
+- {from: Advertiser, to: ConversionEvent, kind: has_many, via: advertiser id on the pixel}
+- {from: AdContext, to: Ad, kind: matched_to, via: contextual/intent matching at request time}
+metrics_definitions:
+  impression: at least 50% of the ad visible for more than 1 second
+  click: a user interacts with an ad by clicking it
+  source: https://docs.koahlabs.com/definitions

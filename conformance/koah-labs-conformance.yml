@@ -1,0 +1,87 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/privacy
+docs:
+- https://docs.koahlabs.com/privacy
+- https://docs.koahlabs.com/content-policy
+- https://www.koahlabs.com/legal/privacy-policy
+notes: >-
+  Koah publishes a Privacy & Brand Safety page describing an industry-standard
+  compliance posture, but names no third-party certification or audit (no SOC 2,
+  ISO 27001, PCI DSS, HIPAA, FedRAMP). Standards below are recorded only where the
+  provider states them or where the API reference plainly evidences them.
+standards:
+- id: rest
+  conforms: true
+  evidence: 'Documented as "organized around REST … resource-oriented URLs, JSON encoded responses, standard HTTP response codes, authentication, and verbs".'
+- id: http-bearer-auth
+  conforms: true
+  evidence: 'Authorization: Bearer header documented for all API requests.'
+- id: rfc3339-timestamps
+  conforms: true
+  evidence: 'created_at rendered as 2026-03-01T12:00:00Z.'
+- id: iso4217-currency
+  conforms: true
+  evidence: 'Conversion event currency parameter documented as "three letter ISO 4217 codes".'
+- id: rfc8594-deprecation-header
+  conforms: partial
+  evidence: 'Legacy /api/publisher/report documented as returning "Deprecation: true". No Sunset header and no written deprecation policy.'
+- id: iab-event-tracking
+  conforms: true
+  evidence: 'Privacy page lists "IAB-standard event tracking" under Industry-Standard Compliance.'
+  self_asserted: true
+- id: mrc-viewability
+  conforms: true
+  evidence: >-
+    Impression defined as at least 50% of the ad visible for more than 1 second, the
+    MRC display viewability threshold; Koah published a post on following MRC
+    viewability standards.
+  source: https://docs.koahlabs.com/definitions
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors documented as a plain status/label table; no application/problem+json.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth flows documented; static bearer API tokens only.
+- id: oidc
+  conforms: false
+- id: openapi
+  conforms: false
+  evidence: No machine-readable API description published.
+- id: asyncapi
+  conforms: false
+  evidence: No event/streaming/webhook surface published for API consumers.
+privacy_posture:
+  principles:
+  - Minimum Data By Default
+  - No Cross-Customer Data Sharing
+  - Enterprise-Grade Security
+  - Marketplace Integrity
+  practices:
+  - Contextual relevancy matching (queries, app/site context)
+  - Device and locale targeting (no personal identifiers required)
+  - Aggregated, anonymized reporting only
+  - Data deletion available on request
+  statement: 'We believe in data minimization: collect what''s necessary, protect what we have, delete what we don''t need.'
+  contact: support@koahlabs.com
+content_policy:
+  url: https://docs.koahlabs.com/content-policy
+  prohibited_categories:
+  - Alcohol, beer, and spirits
+  - Fake or counterfeit products and services
+  - Harmful or dangerous products
+  - Deceptive or fraudulent behavior
+  - Offensive or inappropriate content
+  - Adult or sexually explicit content
+  - Gambling and betting
+  - Political content and campaigns
+  enforcement: Continuous AI scanning of advertiser creative plus regular manual review; ads may be removed without prior notice and repeat violators may be suspended.
+ai_content_signals:
+  source: https://www.koahlabs.com/robots.txt
+  content_signal: 'search=yes, ai-input=yes, ai-train=no'
+  interpretation: Koah permits search indexing and AI inference-time input but forbids use of its site content for model training.
+certifications: []
+gaps:
+- No named third-party certification or audit report.
+- No trust center.
+- No public vulnerability disclosure program or security.txt.

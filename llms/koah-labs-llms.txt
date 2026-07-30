@@ -1,0 +1,84 @@
+# Koah
+
+> Koah is an ad network for AI applications: publishers embed native ads inside chat and agent experiences through an SDK, and advertisers reach users with placements matched to first-party query intent at inference time.
+
+Notes for agents:
+
+- Developer documentation lives at https://docs.koahlabs.com, which publishes its own llms.txt covering SDK installation, platform guides, and the API. Prefer it for integration questions.
+- The homepage and every blog, changelog, customer, and guide page on this site return markdown when fetched with an `Accept: text/markdown` header.
+- Content signals (see /robots.txt): search=yes, ai-input=yes, ai-train=no. Do not use this content for model training.
+
+## Product
+
+- [Home](https://www.koahlabs.com/): Overview of Koah's ad network for AI apps
+- [Monetize](https://www.koahlabs.com/monetize): How publishers add native ads to AI apps and agents with the Koah SDK
+- [Advertise](https://www.koahlabs.com/advertise): How advertisers place intent-matched sponsored results inside AI conversations
+- [Customers](https://www.koahlabs.com/customers): Index of publisher and advertiser case studies
+- [Book a demo](https://www.koahlabs.com/contact): Contact form for publishers and advertisers
+
+## Developer docs (Ad SDK, for publishers)
+
+- [Quickstart](https://docs.koahlabs.com/quickstart): The fastest way to add Koah ads to an app — agent-assisted setup or a platform SDK
+- [Integration skill](https://docs.koahlabs.com/SKILL.md): Step-by-step SDK install instructions written for AI agents
+- [How Koah works](https://docs.koahlabs.com/concepts/how-it-works): The SDK lifecycle: initialize, request an ad for a placement, render, track impressions and events
+- [Ad formats](https://docs.koahlabs.com/formats): Every ad format Koah can serve inside an AI application
+- [SDKs](https://docs.koahlabs.com/sdk): Platform guides for JavaScript, React, React Native, Flutter, iOS, and Android
+- [Testing](https://docs.koahlabs.com/demo-keys): Demo publisher keys for predictable local testing — every request fills
+- [API](https://docs.koahlabs.com/api): REST API for managing publishers and pulling ad performance reports
+- [Content policy](https://docs.koahlabs.com/content-policy): Prohibited ad categories and enforcement guidelines
+
+## Developer docs (Conversion Tracking, for advertisers)
+
+- [Conversion tracking](https://docs.koahlabs.com/conversion-tracking): Install the Koah pixel to track visitor actions and measure campaign ROI
+- [Events](https://docs.koahlabs.com/conversion-tracking/events): Track conversion events on your website with the Koah pixel
+- [Pixel installation](https://docs.koahlabs.com/conversion-tracking/koah-pixel): Manual pixel install; guides also cover Google Tag Manager, Webflow, and Framer
+- [Docs llms.txt](https://docs.koahlabs.com/llms.txt): Full doc sitemap covering both the Ad SDK and Conversion Tracking
+
+## Guides
+
+- [A Quick Guide for AI Agent Builders](https://www.koahlabs.com/guides/monetization-for-ai-app-creators): Answering how Koah's AI Ads work, from setup to payouts
+- [Advertiser Quick Start Guide](https://www.koahlabs.com/guides/advertiser-quick-start-guide): Launch GenAI ads in minutes. Describe your product, set a budget, and Koah’s AI handles the rest.
+- [Creating Performant GenAI Ads](https://www.koahlabs.com/guides/creating-performant-genai-ads): Launch and optimize GenAI ad campaigns with Koah — from setup to tracking and full-funnel performance.
+- [Advertiser FAQs](https://www.koahlabs.com/guides/advertiser-genai-faqs): Most commonly asked questions from our advertisers
+
+## Case studies
+
+- [OverHerd](https://www.koahlabs.com/customers/overherd): Publisher case study — How OverHerd 4X’d Performance by Switching to Koah’s Native Ads
+- [Bitly](https://www.koahlabs.com/customers/bitly): Advertiser case study — How Bitly Turned AI Chat Into a High-Converting Acquisition Channel With Koah
+- [AnswersAi](https://www.koahlabs.com/customers/answerai): Advertiser case study — How Answers.ai Reached Gen Z Students and Drove Rapid Growth with Koah
+- [DeepAI](https://www.koahlabs.com/customers/deepai): Publisher case study — How DeepAI Started Earning Reliable Revenue With Koah’s AI-Native Ads
+- [Heal.ai](https://www.koahlabs.com/customers/heal.ai): Publisher case study — How Heal Made AI Parenting Support More Accessible with Koah
+- [Liner](https://www.koahlabs.com/customers/liner): Publisher case study — How Liner Built a Modern AI Revenue Model With Koah’s LLM-Native Ads
+- [Luzia](https://www.koahlabs.com/customers/luzia): Publisher case study — Luzia Doubles eCPM With Koah’s AI-Native Ad Network
+- [Ollie](https://www.koahlabs.com/customers/ollie): Advertiser case study — How Ollie uses Koah’s ContextMatch to drive app downloads
+- [Sup.ai](https://www.koahlabs.com/customers/sup-ai): Publisher case study — How Sup AI Drives Reliable Revenue With Koah’s LLM-Native Ads
+- [Viro](https://www.koahlabs.com/customers/viro): Publisher case study — How Viro Funds Its Sustainability Mission With Koah’s LLM-Native Ads
+
+## Blog
+
+- [Evolving Koah's Brand](https://www.koahlabs.com/blog/evolving-koahs-brand): Koah is refreshing its visual identity: a new mark, type, color, and imagery built around one idea, the Perfect Moment.
+- [Ads Were Never Supposed to Be Ugly](https://www.koahlabs.com/blog/ads-were-never-supposed-to-be-ugly): Ads were never supposed to be ugly. A return to first principles, and where we're going.
+- [Theory Ventures and Koah: How We’re Scaling “AdSense for AI”](https://www.koahlabs.com/blog/theory-ventures-partnership): Koah announces a $20.5M Series A led by Theory Ventures to scale native monetization for generative AI apps.
+- [Intent Mapping Al: Tasks Over Search](https://www.koahlabs.com/blog/intent-mapping-ai-tasks-over-search): How AI assistants are shifting user intent from search keywords to full workflow delegation, and what it means for advertisers.
+- [Koah Insights: How GenAI Is Changing Digital Advertising](https://www.koahlabs.com/blog/koah-insights-how-genai-is-changing-digital-advertising): Key findings from our latest experiments on contextual ad formats inside AI conversations.
+- [Forerunner-backed Koah Launches: AdSense for GenAI](https://www.koahlabs.com/blog/forerunner-backed-koah-launches-adsense-for-genai): Koah brings new revenue streams to liberate GenAI chat apps from subscription-only monetization.
+- [February's best performing GenAI ad units](https://www.koahlabs.com/blog/february-s-best-performing-genai-ad-units): Two standout ad formats are leading the way: suffix ads on mobile and sponsored sources on the web.
+- [Why Accurate Impression Counting Matters in the Age of AI Advertising](https://www.koahlabs.com/blog/why-accurate-impression-counting-matters-in-the-age-of-ai-advertising): Why accurate impression counting is critical for AI-native ad formats and how Koah follows MRC viewability standards.
+- [Maintaining Transparency in LLM Advertising](https://www.koahlabs.com/blog/maintaining-transparency-in-llm-advertising): How Koah ensures transparency and trust in LLM-native advertising through clear labeling and user-first design.
+
+## Company
+
+- [About](https://www.koahlabs.com/about): Mission, team, and investors
+- [Careers](https://www.koahlabs.com/careers): Open roles in San Francisco
+- [Changelog](https://www.koahlabs.com/changelog): Product release notes for the SDK, dashboard, and ad formats
+- [Founding Advertiser Cohort](https://www.koahlabs.com/cohort): Program for early advertisers testing what works in AI ads
+
+## Optional
+
+- [AI Chat for Websites](https://www.koahlabs.com/ai-chat-for-websites): Adding monetized AI chat to a website
+- [Monetize Content with AI](https://www.koahlabs.com/monetize-content-with-ai): Contextual AI ads for media publishers
+- [Free AI Inference](https://www.koahlabs.com/free-ai-inference): Ad-supported free inference for developers
+- [Terms of Service](https://www.koahlabs.com/legal/terms)
+- [Privacy Policy](https://www.koahlabs.com/legal/privacy-policy)
+- [Sitemap](https://www.koahlabs.com/sitemap.xml): Full URL list
+

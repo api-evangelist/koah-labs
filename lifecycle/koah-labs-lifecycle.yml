@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/api/reporting
+versioning:
+  scheme: none-in-path
+  current: beta
+  docs: https://docs.koahlabs.com/api
+  evidence: >-
+    "The Koah API is organized around REST. Our API has resource-oriented URLs,
+    uses JSON encoded responses, and uses standard HTTP response codes,
+    authentication, and verbs. The API is currently in beta."
+  notes: >-
+    The REST API carries no version segment or version header — https://app.koah.ai/api
+    is unversioned and labelled beta. The client SDKs version independently with
+    semver, each with its own changelog.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: true
+  evidence: >-
+    The reporting reference carries a deprecation notice for the legacy
+    /api/publisher/report endpoint and states that responses from it carry
+    "Deprecation: true".
+  notes: >-
+    Koah signals deprecation per-endpoint in the reference and via a Deprecation
+    response header, but publishes no written deprecation or sunset policy — no
+    notice window, no Sunset header, no end-of-life schedule.
+deprecated_operations:
+- operation: GET /api/publisher/report
+  replaced_by: GET /api/publishers/report
+  signal: 'Deprecation: true response header'
+  source: https://docs.koahlabs.com/api/reporting
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_probes:
+- {url: 'https://status.koahlabs.com', status: does-not-resolve}
+sdk_versioning:
+  scheme: semver
+  channels:
+  - {platform: ios, current: 0.9.1, released: '2026-06-23', changelog: https://docs.koahlabs.com/sdk/ios/changelog}
+  - {platform: android, current: 0.2.1, released: '2026-06-23', changelog: https://docs.koahlabs.com/sdk/android/changelog}
+  - {platform: flutter, current: 0.1.3, released: '2026-06-23', changelog: https://docs.koahlabs.com/sdk/flutter/changelog}
+  - {platform: react-native, current: 0.10.1, released: '2026-06-23', changelog: https://docs.koahlabs.com/sdk/react-native/changelog}
+  - {platform: javascript, current: v2, changelog: https://www.koahlabs.com/changelog, notes: 'v1 remains supported; migration guide at https://docs.koahlabs.com/sdk/javascript/legacy'}
+gaps:
+- No status page.
+- No published SLA or uptime target.
+- No written deprecation/sunset policy (only per-endpoint notices).

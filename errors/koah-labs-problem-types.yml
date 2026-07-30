@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/api/publishers
+docs:
+- https://docs.koahlabs.com/api/publishers
+- https://docs.koahlabs.com/api/reporting
+format: http-status
+rfc9457: false
+notes: >-
+  Koah's API reference documents errors as a plain status/description table. There
+  is no documented application/problem+json envelope, no machine-readable error
+  code registry, and no documented error body shape — only the HTTP status and a
+  short label. Captured verbatim; nothing about the response body is inferred.
+problems:
+- status: 400
+  title: Bad request
+  detail: starts_at and ends_at must be valid dates
+  scope: reporting
+  source: https://docs.koahlabs.com/api/reporting
+- status: 401
+  title: Unauthorized
+  detail: Missing or invalid bearer token.
+  scope: all
+  source: https://docs.koahlabs.com/api/publishers
+- status: 403
+  title: Forbidden
+  scope: publishers
+  source: https://docs.koahlabs.com/api/publishers
+- status: 404
+  title: Not found
+  scope: publishers, reporting
+  source: https://docs.koahlabs.com/api/publishers
+- status: 422
+  title: Unprocessable entity
+  detail: >-
+    On reporting: date range must be positive and not exceed 90 days. On
+    publishers: request body failed validation.
+  scope: publishers, reporting
+  source: https://docs.koahlabs.com/api/publishers
+- status: 429
+  title: Rate limit exceeded
+  scope: all
+  source: https://docs.koahlabs.com/api/publishers
+  notes: >-
+    A 429 is documented but no numeric limit, window, or RateLimit/Retry-After
+    response header is published. No rate-limits artifact is written because no
+    limit values exist to record.
+gaps:
+- No error body schema published.
+- No stable machine-readable error codes.
+- No RFC 9457 problem+json.
+- No documented rate-limit headers or quota values.

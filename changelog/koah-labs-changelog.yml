@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.koahlabs.com/changelog
+scheme:
+  product_changelog: dated entries, no product version numbers
+  sdk_changelog: semver per platform
+current:
+  api: beta (unversioned)
+  javascript_sdk: v2
+  ios_sdk: 0.9.1
+  android_sdk: 0.2.1
+  flutter_sdk: 0.1.3
+  react_native_sdk: 0.10.1
+sdk_changelogs:
+- {platform: ios, url: https://docs.koahlabs.com/sdk/ios/changelog}
+- {platform: android, url: https://docs.koahlabs.com/sdk/android/changelog}
+- {platform: flutter, url: https://docs.koahlabs.com/sdk/flutter/changelog}
+- {platform: react-native, url: https://docs.koahlabs.com/sdk/react-native/changelog}
+notes: >-
+  Recent window only — the live changelog at https://www.koahlabs.com/changelog is
+  the source of truth and extends back to 2025-07-09. Entries below are the most
+  recent published items captured on 2026-07-19.
+entries:
+- date: '2026-07-15'
+  title: Build Every Format in the Dashboard
+  breaking: false
+  highlights: Guided form editors, live previews, validation and image handling for Catalog and Expandable formats in Ads Manager.
+- date: '2026-07-10'
+  title: SDK Reliability Wave
+  breaking: false
+  platforms: [ios, android, flutter, react-native, web]
+  highlights: Viewability-gated impressions, timeouts with bounded retries, crash-safety hardening, web SDK response caching.
+- date: '2026-07-08'
+  title: Brand Logos On Your Ads
+  breaking: false
+  highlights: Advertisers upload a logo once for consistent display across formats, delivered via CDN.
+- date: '2026-06-20'
+  title: Ad Disclaimers
+  breaking: false
+  highlights: Regulated advertisers can attach disclosures to ads, rendered consistently across formats.
+- date: '2026-06-16'
+  title: Bulk Upload and Bulk Actions
+  breaking: false
+  highlights: CSV bulk upload, bulk duplicate/archive, campaign-level metrics rollup.
+- date: '2026-06-13'
+  title: Catalog Ads
+  breaking: false
+  highlights: New format showing multiple individually clickable products in one ad unit.
+- date: '2026-06-04'
+  title: Agent-Ready Docs
+  breaking: false
+  highlights: SKILL.md agent skill, llms.txt doc sitemap, and one-click prompts for Claude and Codex.
+- date: '2026-06-04'
+  title: 'iOS SDK 0.9.0 and Android SDK 0.1.0: Dimensions API'
+  breaking: true
+  highlights: Precise Dimensions API replaces t-shirt sizing with exact bounds specification and best-fit matching.
+- date: '2026-06-03'
+  title: Multi-Property Metrics and Impression Rate
+  breaking: false
+  highlights: Property switcher, aggregate view-all metrics, new impression rate metric.
+- date: '2026-05-29'
+  title: Polls and Ad Reporting on Mobile
+  breaking: false
+  platforms: [ios, android, flutter, react-native]
+- date: '2026-05-27'
+  title: Side Rail Ad Format
+  breaking: false
+  highlights: Persistent side placement format for wider layouts alongside chat.
+- date: '2026-05-21'
+  title: Size Ads To Your Slot
+  breaking: false
+  highlights: New web sizing system with dimensions pass-through and automatic variant selection.
+- date: '2026-05-08'
+  title: Audience Targeting
+  breaking: false
+  highlights: Plain-language targeting layered on contextual matching.
+- date: '2026-04-24'
+  title: JavaScript SDK v2
+  breaking: true
+  highlights: >-
+    Unified requestAd call replaces multiple methods; introduces contexts and slots.
+    v1 remains supported — migration guide at https://docs.koahlabs.com/sdk/javascript/legacy.
+- date: '2026-03-18'
+  title: Programmatic Demand
+  breaking: false
+  highlights: Real-time programmatic competition alongside native demand, automatically activated.
+- date: '2026-03-17'
+  title: Publisher API Launch
+  breaking: false
+  highlights: Public APIs for programmatic property creation and reporting data retrieval.
+- date: '2026-03-14'
+  title: Custom Report Templates
+  breaking: false
+- date: '2026-02-24'
+  title: Expandable and Poll Ad Formats
+  breaking: false
+- date: '2025-11-16'
+  title: iOS SDK Launch
+  breaking: false
+  highlights: Initial iOS SDK release with Swift Package Manager support.
+- date: '2025-07-09'
+  title: Introducing Signals - Web Conversion Tracking
+  breaking: false
+  highlights: Koah Pixel launch with automatic PageView tracking, seven event types, and Events Manager dashboard.

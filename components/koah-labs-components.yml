@@ -1,0 +1,67 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/sdk
+docs:
+- https://docs.koahlabs.com/sdk
+- https://docs.koahlabs.com/formats
+- https://docs.koahlabs.com/concepts/theming
+notes: >-
+  Koah's client surface is almost entirely embeddable ad components — the product
+  is a rendered ad unit inside a host application's chat or feed UI. Distinct from
+  the distribution packages catalogued in packages/.
+families:
+- family: ad-card
+  description: The primary ad surface. Renders a fetched ad, fires the impression on first on-screen render, and reports interactions as events.
+  components:
+  - {name: KoahCard, platforms: [ios, flutter], notes: 'Takes adContext and cacheKey.'}
+  - {name: KoahCard, platform: android, notes: 'Jetpack Compose composable; takes adContext and cacheKey.'}
+  - {name: KoahTextAdComponent, platform: react-native}
+  - {name: KoahFeedAdComponent, platform: react-native, notes: 'Feed-row placement variant.'}
+  - {name: KoahAd, platform: android, notes: 'Lower-level ad component with onEvent handling.'}
+- family: provider-and-chrome
+  description: App-level wiring required around the ad components.
+  components:
+  - {name: KoahProvider, platform: react-native, notes: 'Wraps the app; takes publisherId.'}
+  - {name: KoahBrowserModal, platform: react-native, required: true, notes: 'Required browser modal for ad interactions.'}
+- family: web-slot
+  description: Web integration is a target element plus an imperative request, not a component library.
+  components:
+  - {name: window.koah.requestAd, platform: javascript, signature: 'requestAd({ target, context }) -> Promise<AdResult>'}
+  - {name: ad slot element, platform: javascript, notes: 'Any div passed as target, e.g. <div id="ad-slot"></div>.'}
+  - {name: React wrapper, platform: react, status: planned, notes: 'React apps currently integrate through the JavaScript SDK; a dedicated React wrapper is documented as planned.'}
+loaders:
+- platform: javascript
+  type: script-tag
+  src: https://app.koah.ai/js?token=<YOUR_PUBLISHER_ID>
+  attributes: [async]
+  global: window.koah
+- platform: conversion-tracking
+  type: pixel
+  global: kad
+  call: kad('track', '<EventName>', { ... })
+  docs: https://docs.koahlabs.com/conversion-tracking/koah-pixel
+ad_formats:
+  source: https://docs.koahlabs.com/formats
+  formats:
+  - Action Card
+  - Image Card
+  - Poll
+  - Expandable
+  - Catalog
+  - Side Rail
+  sizing: >-
+    Dimensions API — exact bounds specification with best-fit variant matching
+    (replaced t-shirt sizing in iOS 0.9.0 / Android 0.1.0).
+theming:
+  docs: https://docs.koahlabs.com/concepts/theming
+  model: four levers plus framed vs. borderless card chrome
+  per_platform_reference:
+  - https://docs.koahlabs.com/sdk/ios/appearance
+  - https://docs.koahlabs.com/sdk/android/appearance
+  - https://docs.koahlabs.com/sdk/flutter/appearance
+  - https://docs.koahlabs.com/sdk/react-native/appearance
+  - https://docs.koahlabs.com/sdk/javascript/appearance
+built_in_affordances:
+- name: About this ad / Report this ad
+  description: Ships with every ad; user reports feed Koah's content moderation. No integration work required.
+  source: https://docs.koahlabs.com/concepts/how-it-works

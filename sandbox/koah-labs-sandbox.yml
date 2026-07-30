@@ -1,0 +1,81 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.koahlabs.com/demo-keys
+docs:
+- https://docs.koahlabs.com/demo-keys
+- https://docs.koahlabs.com/concepts/debugging
+- https://docs.koahlabs.com/sdk/react-native/debugging
+model: demo-publisher-key
+notes: >-
+  Koah's sandbox is a demo publisher key that always fills, not a separate test
+  host or a test/live key-prefix scheme. No literal demo key values are published —
+  the docs direct developers to request one from their Koah point of contact, so
+  none are recorded here.
+test_vs_live:
+  separation: by publisher key, same API host
+  key_prefixes: none published
+  test_host: none — demo and production keys both hit https://app.koah.ai
+  guarantee: >-
+    "Use a demo publisher key to test your integration locally — it always returns
+    an ad, so you can build against a predictable response."
+obtaining:
+  method: request from your Koah point of contact
+  self_serve: false
+  published_values: none
+  evidence: '"Request a demo key from your Koah point of contact."'
+what_it_enables:
+- Verify your rendering and styling
+- Exercise impression, view, and click tracking
+- Screenshot your UI for review
+- Run integration tests against a predictable response shape
+switching_pattern:
+  guidance: >-
+    Bind the key to the existing debug/release configuration so demo keys are used
+    only in development. Koah explicitly warns never to ship a demo key to production.
+  examples:
+  - platform: android
+    code: |
+      val publisherId = if (BuildConfig.DEBUG)
+          "your-demo-publisher-id"
+      else
+          "your-production-publisher-id"
+      Koah(context) { this.publisherId = publisherId }
+  - platform: ios
+    code: |
+      #if DEBUG
+      let publisherId = "your-demo-publisher-id"
+      #else
+      let publisherId = "your-production-publisher-id"
+      #endif
+      Koah.shared.configure(publisherId: publisherId)
+  - platform: react-native
+    code: |
+      const publisherId = __DEV__
+        ? 'your-demo-publisher-id'
+        : 'your-production-publisher-id'
+      new Koah({ publisherId })
+  - platform: flutter
+    code: |
+      final publisherId = kDebugMode
+          ? 'your-demo-publisher-id'
+          : 'your-production-publisher-id';
+      Koah.instance(publisherId: publisherId);
+no_fill_behavior:
+  description: >-
+    On a debug build, a production key that returns no-fill logs a one-time warning
+    pointing at the demo-keys page. There is no flag to disable it; seeing it in
+    production means a debug build is shipping.
+  expected: true
+  rationale: Real-inventory fill rate is not 100%, so some requests legitimately return no ad.
+debugging:
+  logging: platform debug logging (iOS KoahLogger, Android Debug Inspector)
+  inspector: iOS debug inspector
+  success_signal: successful /k/init and /query requests in the debug logs
+  docs: https://docs.koahlabs.com/concepts/debugging
+preview:
+  formats_preview: documented for web development
+  docs: https://docs.koahlabs.com/sdk/javascript/use-cases
+gaps:
+- No published literal demo key values.
+- No self-serve sandbox provisioning.
+- No test mode for the REST API (publishers/reporting) — demo keys cover the ad SDKs only.

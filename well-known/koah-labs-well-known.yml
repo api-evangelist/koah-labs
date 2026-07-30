@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+found: 0
+notes: >-
+  Every /.well-known/ path probed returned 404 on both the marketing host and the
+  docs host. api.koahlabs.com does not resolve; the production API host is
+  app.koah.ai, which sits behind a Cloudflare challenge that returns 403 to
+  unauthenticated probes, so its /.well-known/ surface could not be assessed.
+  No pointer is wired into apis.yml because nothing was found — absence is the
+  recorded result, not a gap to be papered over.
+hosts:
+- host: https://www.koahlabs.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.koahlabs.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.koahlabs.com
+  resolves: false
+  documents: []
+related_agent_surfaces:
+- path: /llms.txt
+  host: https://www.koahlabs.com
+  status: 200
+  file: ../llms/koah-labs-llms.txt
+- path: /llms.txt
+  host: https://docs.koahlabs.com
+  status: 200
+  file: ../llms/koah-labs-docs-llms.txt
+- path: /robots.txt
+  host: https://www.koahlabs.com
+  status: 200
+  content_signal: search=yes, ai-input=yes, ai-train=no
+- path: /llms-full.txt
+  host: https://docs.koahlabs.com
+  status: 404
