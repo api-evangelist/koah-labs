@@ -1,22 +1,72 @@
 aid: koah-labs
 name: Koah Labs
-description: 'Koah Labs is a company surfaced as a portfolio company of forerunner-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Koah Labs operates Koah, an advertising network purpose-built for AI applications. It
+  ships two products: an Ad SDK that lets publishers monetize chat and agent experiences with native,
+  intent-matched ad formats (action card, image card, poll, expandable, catalog, side rail) across
+  JavaScript, React, React Native, Flutter, iOS and Android; and Conversion Tracking, a pixel that lets
+  advertisers measure ROI across nine standard event types. A beta REST API at app.koah.ai/api lets
+  publisher teams create and manage publishers programmatically and pull daily performance reports
+  (queries, fill rate, impressions, clicks, CTR, eCPC, eCPM, revenue). Koah publishes agent-native
+  developer surfaces including llms.txt on both its marketing and docs hosts and a first-party Claude
+  Agent Skill for integration.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.koahlabs.com/opengraph-image
 url: https://raw.githubusercontent.com/api-evangelist/koah-labs/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - forerunner-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+- theory-ventures
+x-tier: profiled
+x-tier-reason: enriched-from-provider-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Ai
-apis: []
+- Advertising
+- Ad Network
+- Monetization
+- Conversion Tracking
+- SDKs
+- Agents
+apis:
+- aid: koah-labs:koah-api
+  name: Koah API
+  description: 'Beta REST API for Koah publisher team accounts. Resource-oriented URLs, JSON responses,
+    standard HTTP verbs and status codes, Bearer token authentication. Covers publisher CRUD and daily
+    reporting for team and per-publisher metrics.'
+  humanURL: https://docs.koahlabs.com/api
+  baseURL: https://app.koah.ai/api
+  tags:
+  - Advertising
+  - Reporting
+  - Publishers
+  properties:
+  - type: Documentation
+    url: https://docs.koahlabs.com/api
+  - type: APIReference
+    url: https://docs.koahlabs.com/api
+  - type: Authentication
+    url: authentication/koah-labs-authentication.yml
+  - type: ErrorCatalog
+    url: errors/koah-labs-problem-types.yml
+  - type: Conventions
+    url: conventions/koah-labs-conventions.yml
+  - type: DataModel
+    url: data-model/koah-labs-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +75,64 @@ maintainers:
 common:
 - type: Website
   url: https://www.koahlabs.com
+- type: DeveloperPortal
+  url: https://docs.koahlabs.com
+- type: Documentation
+  url: https://docs.koahlabs.com
+- type: APIReference
+  url: https://docs.koahlabs.com/api
+- type: GettingStarted
+  url: https://docs.koahlabs.com/quickstart
+- type: Support
+  url: https://www.koahlabs.com/contact
+- type: Blog
+  url: https://www.koahlabs.com/blog
+- type: GitHubOrganization
+  url: https://github.com/koahlabs
+- type: SignUp
+  url: https://app.koah.ai
+- type: TermsOfService
+  url: https://www.koahlabs.com/legal/terms
+- type: PrivacyPolicy
+  url: https://www.koahlabs.com/legal/privacy-policy
+- type: ChangeLog
+  url: https://www.koahlabs.com/changelog
+- type: ChangeLog
+  url: changelog/koah-labs-changelog.yml
+- type: Packages
+  url: packages/koah-labs-packages.yml
+- type: SDKs
+  url: packages/koah-labs-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/koah-labs-llms.txt
+- type: Authentication
+  url: authentication/koah-labs-authentication.yml
+- type: ErrorCatalog
+  url: errors/koah-labs-problem-types.yml
+- type: Conventions
+  url: conventions/koah-labs-conventions.yml
+- type: Idempotency
+  url: conventions/koah-labs-conventions.yml
+- type: Lifecycle
+  url: lifecycle/koah-labs-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/koah-labs-lifecycle.yml
+- type: Sandbox
+  url: sandbox/koah-labs-sandbox.yml
+- type: Components
+  url: components/koah-labs-components.yml
+- type: DataModel
+  url: data-model/koah-labs-data-model.yml
+- type: Conformance
+  url: conformance/koah-labs-conformance.yml
+- type: DomainSecurity
+  url: security/koah-labs-domain-security.yml
+- type: ContentSignal
+  url: https://www.koahlabs.com/robots.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
