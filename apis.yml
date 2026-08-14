@@ -32,7 +32,7 @@ x-tier: profiled
 x-tier-reason: enriched-from-provider-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 tags:
 - Company
 - Ai
@@ -67,14 +67,16 @@ apis:
     url: conventions/koah-labs-conventions.yml
   - type: DataModel
     url: data-model/koah-labs-data-model.yml
+  - type: RateLimits
+    url: rate-limits/koah-labs-rate-limits.yml
+  - type: Plans
+    url: plans/koah-labs-plans-pricing.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: MCPServer
-  url: mcp/koah-labs-mcp.yml
 - type: Website
   url: https://www.koahlabs.com
 - type: DeveloperPortal
@@ -123,6 +125,10 @@ common:
   url: lifecycle/koah-labs-lifecycle.yml
 - type: Sandbox
   url: sandbox/koah-labs-sandbox.yml
+- type: RateLimits
+  url: rate-limits/koah-labs-rate-limits.yml
+- type: Plans
+  url: plans/koah-labs-plans-pricing.yml
 - type: Components
   url: components/koah-labs-components.yml
 - type: DataModel
@@ -134,7 +140,26 @@ common:
 - type: ContentSignal
   url: https://www.koahlabs.com/robots.txt
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 2
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+x-contract-discovery:
+  checked: '2026-08-13'
+  result: no machine-readable contract published
+  detail: >-
+    Full STEP 0b sweep against the API host, both docs/marketing hosts and the
+    /.well-known surface found no OpenAPI, Swagger, GraphQL, AsyncAPI, MCP server
+    or A2A agent card. The REST API is documented as HTML reference pages only.
+    docs.koahlabs.com additionally answers HTTP 403 (Cloudflare bot challenge) to
+    HTML paths for unauthenticated clients while still serving llms.txt, so the
+    docs are readable by agents through llms.txt but not by a crawler.
+  evidence:
+  - {url: 'https://app.koah.ai/openapi.json', status: 403}
+  - {url: 'https://app.koah.ai/api/openapi.json', status: 403}
+  - {url: 'https://docs.koahlabs.com/openapi.json', status: 403}
+  - {url: 'https://www.koahlabs.com/openapi.json', status: 404}
+  - {url: 'https://app.koah.ai/.well-known/agent-card.json', status: 404}
+  - {url: 'https://app.koah.ai/mcp', status: 403}
+  - {url: 'https://registry.modelcontextprotocol.io/v0/servers?search=koah', status: 200, result: 0 servers}
+  - {url: 'https://docs.koahlabs.com/llms.txt', status: 200}
