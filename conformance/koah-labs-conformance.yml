@@ -48,6 +48,13 @@ standards:
 - id: openapi
   conforms: false
   evidence: No machine-readable API description published.
+  reprobed: '2026-08-13'
+  reprobe_detail: >-
+    /openapi.json, /openapi.yaml, /swagger.json, /api/openapi.json, /api/openapi.yaml
+    and /api-docs all miss on app.koah.ai (403 Cloudflare), docs.koahlabs.com (403)
+    and www.koahlabs.com (404). docs.koahlabs.com now serves a Cloudflare bot
+    challenge to unauthenticated HTML requests while continuing to serve llms.txt —
+    agents reading llms.txt get in, crawlers do not.
 - id: asyncapi
   conforms: false
   evidence: No event/streaming/webhook surface published for API consumers.

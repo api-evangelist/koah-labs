@@ -1,56 +1,95 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: derived
 status: candidate
 source: https://docs.koahlabs.com/api
-notes: >-
-  Koah publishes NO MCP server. Searched the docs, the koahlabs GitHub org, and the
-  npm registry — no hosted, remote, or stdio MCP server exists. The tools below are
-  a candidate surface derived from the six documented REST operations, offered as a
-  design starting point only. Because no server is genuinely present, NO MCPServer
-  pointer is wired into apis.yml — emitting one would misrepresent the provider.
-  Koah's actual agent-facing investment is an Agent Skill (see skills/) plus llms.txt
-  on both hosts.
+notes: Koah publishes NO MCP server. Searched the docs, the koahlabs GitHub org, and the npm registry
+  — no hosted, remote, or stdio MCP server exists. The tools below are a candidate surface derived from
+  the six documented REST operations, offered as a design starting point only. Because no server is genuinely
+  present, NO MCPServer pointer is wired into apis.yml — emitting one would misrepresent the provider.
+  Koah's actual agent-facing investment is an Agent Skill (see skills/) plus llms.txt on both hosts.
 server:
   published: false
   name: null
   transport: null
   url: null
 searched:
-- {surface: 'https://docs.koahlabs.com/llms.txt', result: no MCP entry}
-- {surface: 'https://github.com/koahlabs', result: 'no MCP repo (repos: .github, OpenClio, skills, swift-package-manager-koah-ads, swift-package-manager-koah-ads-admob)'}
-- {surface: npm registry, result: no koah MCP package}
+- surface: https://docs.koahlabs.com/llms.txt
+  result: no MCP entry
+  checked: '2026-08-13'
+- surface: https://www.koahlabs.com/llms.txt
+  result: no MCP entry
+  checked: '2026-08-13'
+- surface: https://github.com/koahlabs
+  result: 'no MCP repo (public repos: OpenClio, skills, swift-package-manager-koah-ads, swift-package-manager-koah-ads-admob)'
+  checked: '2026-08-13'
+- surface: npm registry
+  result: 'keyword search "koah" returns exactly one package, koah-react-native — no MCP package'
+  checked: '2026-08-13'
+- surface: https://registry.modelcontextprotocol.io/v0/servers?search=koah
+  result: 0 servers
+  status: 200
+  checked: '2026-08-13'
+- surface: https://app.koah.ai/mcp
+  result: no MCP endpoint (Cloudflare challenge, HTTP 403 — not an MCP transport)
+  checked: '2026-08-13'
+- surface: https://www.koahlabs.com/mcp
+  result: HTTP 404
+  checked: '2026-08-13'
 candidate_tools:
 - name: create_publisher
   description: Create a publisher under the authenticated publisher team account.
-  source_operation: 'POST https://app.koah.ai/api/publishers'
-  inputs: [name, reference_id]
+  source_operation: POST https://app.koah.ai/api/publishers
+  inputs:
+  - name
+  - reference_id
   write: true
 - name: list_publishers
   description: List all publishers under the authenticated publisher team account.
-  source_operation: 'GET https://app.koah.ai/api/publishers'
+  source_operation: GET https://app.koah.ai/api/publishers
   inputs: []
   write: false
 - name: get_publisher
   description: Retrieve a single publisher by id, including its query selectors.
-  source_operation: 'GET https://app.koah.ai/api/publishers/:id'
-  inputs: [id]
+  source_operation: GET https://app.koah.ai/api/publishers/:id
+  inputs:
+  - id
   write: false
 - name: update_publisher
   description: Update a publisher's mutable fields.
-  source_operation: 'PATCH https://app.koah.ai/api/publishers/:id'
-  inputs: [id, name]
+  source_operation: PATCH https://app.koah.ai/api/publishers/:id
+  inputs:
+  - id
+  - name
   write: true
 - name: get_team_report
-  description: Fetch daily performance metrics across the whole publisher team for a date range of up to 90 days.
-  source_operation: 'GET https://app.koah.ai/api/publishers/report'
-  inputs: [starts_at, ends_at]
+  description: Fetch daily performance metrics across the whole publisher team for a date range of up
+    to 90 days.
+  source_operation: GET https://app.koah.ai/api/publishers/report
+  inputs:
+  - starts_at
+  - ends_at
   write: false
 - name: get_publisher_report
   description: Fetch daily performance metrics for one publisher for a date range of up to 90 days.
-  source_operation: 'GET https://app.koah.ai/api/publishers/:id/report'
-  inputs: [id, starts_at, ends_at]
+  source_operation: GET https://app.koah.ai/api/publishers/:id/report
+  inputs:
+  - id
+  - starts_at
+  - ends_at
   write: false
 auth:
   scheme: http-bearer
   header: 'Authorization: Bearer YOUR_API_TOKEN'
   detail: ../authentication/koah-labs-authentication.yml
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+  checked: '2026-08-13'
+  source: >-
+    Re-searched 2026-08-13 across both llms.txt files, the koahlabs GitHub org, an
+    npm keyword search, the official MCP registry (0 results) and direct /mcp
+    probes on both hosts. Nobody ships a Koah MCP server, remote or stdio.

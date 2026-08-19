@@ -1,0 +1,64 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.koahlabs.com/guides/advertiser-genai-faqs
+docs:
+- https://www.koahlabs.com/guides/advertiser-genai-faqs
+- https://www.koahlabs.com/guides/advertiser-quick-start-guide
+- https://www.koahlabs.com/guides/monetization-for-ai-app-creators
+plan_count: 0
+notes: >-
+  Koah publishes NO plans, tiers, or rate card. There is no /pricing page on
+  koahlabs.com (probed 2026-08-13, HTTP 404) and no pricing entry in either
+  llms.txt. This is expected for an ad network rather than a gap: Koah is a
+  two-sided marketplace, so money moves as advertiser spend and publisher
+  revenue share, not as subscription tiers. The commercial model below is
+  recorded verbatim from the guides Koah does publish; no price, floor, take
+  rate, or revenue-share percentage is published anywhere, and none is inferred
+  here.
+plans: []
+commercial_model:
+  shape: two-sided ad marketplace
+  advertiser_side:
+    billing_models:
+    - model: CPM
+      applies_to: campaigns with the "Awareness" objective
+      price: not published
+    - model: CPC
+      applies_to: all other campaign objectives
+      price: not published
+      evidence: '"pricing is a flat cost per click (CPC)"'
+    source: https://www.koahlabs.com/guides/advertiser-genai-faqs
+    budget_guidance:
+      type: daily budget, advertiser-set
+      recommended_start: USD 50-100/day
+      evidence: '"Daily Budget: Start with $50-100/day to gather initial learnings"'
+      source: https://www.koahlabs.com/guides/advertiser-quick-start-guide
+    onboarding: >-
+      Account registration is token-gated — advertisers email support@koahlabs.com
+      for a token before registering at https://app.koah.ai/register.
+  publisher_side:
+    earning_model: per-impression and per-click
+    rate_card: not published
+    evidence: >-
+      "You earn on a per-impression and per-click basis. Rates vary by geography,
+      device type, vertical, and seasonality."
+    payouts: >-
+      For builders arriving through a hosting platform, the platform pays the
+      publisher (via Stripe), not Koah directly, on that platform's schedule and
+      minimums.
+    revenue_share: not published
+    source: https://www.koahlabs.com/guides/monetization-for-ai-app-creators
+  api_pricing:
+    metered: false
+    notes: >-
+      The publisher REST API at https://app.koah.ai/api carries no separate price
+      or quota tier — it is an account-management and reporting surface included
+      with a publisher team account.
+probes:
+- {url: 'https://www.koahlabs.com/pricing', status: 404, checked: '2026-08-13'}
+- {url: 'https://www.koahlabs.com/llms.txt', status: 200, result: no pricing entry, checked: '2026-08-13'}
+- {url: 'https://docs.koahlabs.com/llms.txt', status: 200, result: no pricing entry, checked: '2026-08-13'}
+gaps:
+- No public price list, floor price, or CPM/CPC rate range.
+- No published publisher revenue-share percentage.
+- Advertiser account creation requires a token issued over email.

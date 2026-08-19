@@ -1,64 +1,124 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://docs.koahlabs.com/sdk
 notes: >-
-  Verified directly against the public registries on 2026-07-19. The web SDK is not
-  distributed through npm — it is loaded from a first-party script tag. A dedicated
-  React wrapper is documented as planned but not yet published.
+  Re-verified directly against the public registry metadata endpoints on
+  2026-08-13. Every entry carries structured version + published fields read from
+  the registry itself, not from the docs. The web SDK is not distributed through a
+  registry at all — it is a first-party script tag whose URL is unpinned, so there
+  is no version a consumer can pin or a date this pipeline can read; that is
+  recorded as null with a note rather than guessed. A dedicated React wrapper is
+  documented as planned but still not published.
+currency:
+  checked: '2026-08-13'
+  finding: >-
+    All five registry-distributed packages are current and actively released. The
+    Android (0.3.0) and iOS (0.10.0) SDKs were both published on 2026-08-13, the
+    day of this probe, and both are ahead of the versions the docs changelog
+    describes — the SDKs ship faster than the product changelog is updated
+    (latest changelog entry: 2026-07-17).
 packages:
 - language: javascript
-  registry: script-tag
+  registry: cdn
   name: koah web SDK
   url: https://docs.koahlabs.com/sdk/javascript
   install: <script async src="https://app.koah.ai/js?token=<YOUR_PUBLISHER_ID>"></script>
   official: true
-  verified: '2026-07-19'
-  notes: Loaded from app.koah.ai; exposes window.koah.requestAd. Not published to npm.
+  version: null
+  published: null
+  verified: '2026-08-13'
+  notes: >-
+    Served from app.koah.ai/js, not from npm or a CDN with a metadata endpoint.
+    The script URL carries no version segment and floats to whatever Koah serves,
+    so neither a consumer nor this pipeline can determine which build is loaded —
+    the unpinned distribution IS the finding. Exposes window.koah.requestAd.
+    Current major line is documented as JavaScript SDK v2 (v1 still supported).
 - language: typescript
   registry: npm
   name: koah-react-native
   version: 0.10.1
+  published: '2026-06-23'
   url: https://www.npmjs.com/package/koah-react-native
   repository: https://github.com/koahlabs/koah-react-native
   install: npm i -s koah-react-native @react-native-async-storage/async-storage react-native-device-info react-native-webview
   install_expo: npx expo install koah-react-native expo-file-system expo-application expo-device react-native-webview
   official: true
-  verified: '2026-07-19'
+  verified: '2026-08-13'
   registry_status: 200
+  registry_metadata: https://registry.npmjs.org/koah-react-native
+  release_count: 35
 - language: dart
   registry: pub.dev
   name: koah_flutter
   version: 0.1.3
+  published: '2026-06-23'
   url: https://pub.dev/packages/koah_flutter
   install: 'dependencies: { koah_flutter: ^0.1.3 }'
   official: true
-  verified: '2026-07-19'
+  verified: '2026-08-13'
   registry_status: 200
+  registry_metadata: https://pub.dev/api/packages/koah_flutter
 - language: kotlin
   registry: maven-central
   name: com.koahlabs:koah-android
-  version: 0.2.1
+  version: 0.3.0
+  published: '2026-08-13'
   url: https://repo1.maven.org/maven2/com/koahlabs/koah-android/
-  install: implementation("com.koahlabs:koah-android:0.2.1")
+  install: implementation("com.koahlabs:koah-android:0.3.0")
   official: true
-  verified: '2026-07-19'
+  verified: '2026-08-13'
   registry_status: 200
+  registry_metadata: https://repo1.maven.org/maven2/com/koahlabs/koah-android/maven-metadata.xml
   notes: >-
-    Present on Maven Central (maven-metadata.xml lists 0.0.1 through 0.2.1); the
-    search.maven.org solr index returned no rows for the group at probe time.
+    maven-metadata.xml lists 0.0.1 through 0.3.0 with <release>0.3.0</release>;
+    published date read from the Last-Modified header on the 0.3.0 POM
+    (Thu, 13 Aug 2026 19:25:22 GMT). The search.maven.org solr index still returns
+    no rows for the group, so the artifact repository is the authoritative source.
 - language: swift
   registry: swift-package-manager
   name: KoahAds
-  version: 0.9.1
+  version: 0.10.0
+  published: '2026-08-13'
   url: https://github.com/koahlabs/swift-package-manager-koah-ads
-  install: '.package(url: "https://github.com/koahlabs/swift-package-manager-koah-ads", from: "0.9.1")'
+  install: '.package(url: "https://github.com/koahlabs/swift-package-manager-koah-ads", from: "0.10.0")'
   official: true
-  verified: '2026-07-19'
-  notes: Also distributed as a manual XCFramework. CocoaPods is explicitly not supported.
+  verified: '2026-08-13'
+  registry_status: 200
+  registry_metadata: https://api.github.com/repos/koahlabs/swift-package-manager-koah-ads/releases/latest
+  notes: >-
+    SPM has no central registry; version and date read from the GitHub release
+    (tag 0.10.0, published 2026-08-13T16:49:56Z). Also distributed as a manual
+    XCFramework. CocoaPods is explicitly not supported.
+- language: swift
+  registry: swift-package-manager
+  name: KoahAdsAdMob
+  version: 0.1.1
+  published: '2026-06-07'
+  url: https://github.com/koahlabs/swift-package-manager-koah-ads-admob
+  install: '.package(url: "https://github.com/koahlabs/swift-package-manager-koah-ads-admob", from: "0.1.1")'
+  official: true
+  verified: '2026-08-13'
+  registry_status: 200
+  notes: >-
+    AdMob mediation adapter for the iOS Ad SDK — a second first-party Swift
+    package, separate from KoahAds. Tags 0.1.0 and 0.1.1 only.
 not_found:
 - registry: npm
   probed: ['@koah/sdk', 'koah', '@koahlabs/sdk', 'koah-sdk', '@koah/react', 'koah-js']
   status: 404
+  notes: >-
+    An npm keyword search for "koah" on 2026-08-13 returns exactly one package,
+    koah-react-native — there is no npm-published web or React SDK.
 - registry: pypi
   probed: [koah]
   status: 404
+source_repositories:
+  org: https://github.com/koahlabs
+  public_repos:
+  - {name: swift-package-manager-koah-ads, language: Swift, updated: '2026-08-13'}
+  - {name: swift-package-manager-koah-ads-admob, language: Swift, updated: '2026-06-07'}
+  - {name: skills, language: Python, updated: '2026-08-01', notes: public Agent Skills for Koah products}
+  - {name: OpenClio, language: Python, updated: '2025-09-05', notes: not a Koah client library}
+  notes: >-
+    The npm, pub.dev and Maven packages are published from private sources — only
+    the Swift packages and the skills repo are public in the koahlabs org.

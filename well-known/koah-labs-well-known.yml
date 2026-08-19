@@ -1,28 +1,49 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 found: 0
 notes: >-
-  Every /.well-known/ path probed returned 404 on both the marketing host and the
-  docs host. api.koahlabs.com does not resolve; the production API host is
-  app.koah.ai, which sits behind a Cloudflare challenge that returns 403 to
-  unauthenticated probes, so its /.well-known/ surface could not be assessed.
-  No pointer is wired into apis.yml because nothing was found — absence is the
-  recorded result, not a gap to be papered over.
+  Re-probed 2026-08-13, this round including the production API host that could
+  not be assessed in the first round. Result is unchanged: Koah serves no
+  /.well-known/ document on any host. On app.koah.ai every unknown /.well-known/
+  path 302-redirects to https://app.koah.ai/login (the dashboard catch-all) except
+  /.well-known/agent-card.json, which returns a real 404 — a redirect to a login
+  page is not a document, so all of these are misses. On the marketing and docs
+  hosts every path 404s. NO WellKnown, SecurityTxt or AgentCard pointer is wired
+  into apis.yml, because a pointer would assert that Koah serves a surface it does
+  not. Koah's real agent-facing investment sits elsewhere: llms.txt on both hosts,
+  a Content-Signal line in robots.txt, and a first-party Agent Skill.
 hosts:
+- host: https://app.koah.ai
+  checked: '2026-08-13'
+  behavior: unknown /.well-known/ paths 302 -> https://app.koah.ai/login
+  documents:
+  - {path: /.well-known/security.txt, status: 302, redirect: /login}
+  - {path: /.well-known/openid-configuration, status: 302, redirect: /login}
+  - {path: /.well-known/oauth-authorization-server, status: 302, redirect: /login}
+  - {path: /.well-known/oauth-protected-resource, status: 302, redirect: /login}
+  - {path: /.well-known/api-catalog, status: 302, redirect: /login}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
 - host: https://www.koahlabs.com
+  checked: '2026-08-13'
   documents:
   - {path: /.well-known/security.txt, status: 404}
   - {path: /.well-known/openid-configuration, status: 404}
   - {path: /.well-known/oauth-authorization-server, status: 404}
   - {path: /.well-known/api-catalog, status: 404}
   - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
 - host: https://docs.koahlabs.com
+  checked: '2026-08-13'
   documents:
   - {path: /.well-known/security.txt, status: 404}
   - {path: /.well-known/openid-configuration, status: 404}
   - {path: /.well-known/oauth-authorization-server, status: 404}
   - {path: /.well-known/api-catalog, status: 404}
-  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
 - host: https://api.koahlabs.com
   resolves: false
   documents: []
@@ -30,14 +51,17 @@ related_agent_surfaces:
 - path: /llms.txt
   host: https://www.koahlabs.com
   status: 200
+  checked: '2026-08-13'
   file: ../llms/koah-labs-llms.txt
 - path: /llms.txt
   host: https://docs.koahlabs.com
   status: 200
+  checked: '2026-08-13'
   file: ../llms/koah-labs-docs-llms.txt
 - path: /robots.txt
   host: https://www.koahlabs.com
   status: 200
+  checked: '2026-08-13'
   content_signal: search=yes, ai-input=yes, ai-train=no
 - path: /llms-full.txt
   host: https://docs.koahlabs.com

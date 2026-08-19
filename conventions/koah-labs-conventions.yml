@@ -9,6 +9,8 @@ cross_links:
   errors: errors/koah-labs-problem-types.yml
   lifecycle: lifecycle/koah-labs-lifecycle.yml
   data_model: data-model/koah-labs-data-model.yml
+  rate_limits: rate-limits/koah-labs-rate-limits.yml
+  plans: plans/koah-labs-plans-pricing.yml
 architecture:
   style: REST
   base_url: https://app.koah.ai/api
@@ -78,9 +80,18 @@ metadata:
   fields:
   - {resource: publisher, field: reference_id, purpose: caller-supplied external identifier}
 request_tracing:
-  request_id_header: null
-  supported: false
-  notes: No request-id or correlation header is documented.
+  request_id_header: x-request-id
+  documented: false
+  observed: true
+  supported: undocumented-but-present
+  method: probed
+  evidence: >-
+    An unauthenticated GET https://app.koah.ai/api/publishers on 2026-08-13
+    returned HTTP 401 carrying x-request-id (a UUID) and x-runtime (seconds).
+    Neither header appears anywhere in the published API reference, so an agent
+    has no documented contract to rely on them — they are recorded here as an
+    observed runtime property, not as a provider commitment.
+  observed_headers: [x-request-id, x-runtime]
 versioning:
   in_path: false
   header: null
@@ -94,6 +105,8 @@ rate_limiting:
   status: 429
   headers: undocumented
   limits_published: false
+  observed_headers: none — no RateLimit-*, X-RateLimit-* or Retry-After on a live 401 (2026-08-13)
+  detail: rate-limits/koah-labs-rate-limits.yml
   notes: A 429 is documented but no quota values or RateLimit/Retry-After headers are published.
 timestamps:
   format: RFC 3339 / ISO 8601 UTC

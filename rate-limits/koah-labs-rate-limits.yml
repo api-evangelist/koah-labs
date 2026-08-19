@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: probed
+source: https://app.koah.ai/api/publishers
+docs:
+- https://docs.koahlabs.com/api/publishers
+- https://docs.koahlabs.com/api/reporting
+limit_count: 0
+notes: >-
+  Koah publishes NO rate-limit values. The API reference documents a 429 status in
+  its error table but names no quota, no window, no burst, and no headers. A live
+  unauthenticated request to https://app.koah.ai/api/publishers on 2026-08-13
+  returned HTTP 401 with no RateLimit-*, X-RateLimit-*, or Retry-After header on
+  the response, so nothing could be observed at runtime either. An agent
+  integrating this API has no way to know its budget before it is exhausted.
+limits: []
+exhaustion:
+  status: 429
+  title: Rate limit exceeded
+  documented: true
+  values_published: false
+  retry_after_header: not observed
+  source: https://docs.koahlabs.com/api/publishers
+response_headers:
+  ratelimit_draft: not present
+  x_ratelimit: not present
+  retry_after: not present
+  observed_on:
+    request: GET https://app.koah.ai/api/publishers (no Authorization header)
+    status: 401
+    date: '2026-08-13'
+    headers_present:
+    - x-request-id
+    - x-runtime
+    - strict-transport-security
+    - cache-control
+    - vary
+    notes: >-
+      x-request-id and x-runtime are returned on every response and are the only
+      per-request runtime signals available; neither is documented.
+bounded_by:
+  - surface: reporting
+    constraint: date range must be positive and must not exceed 90 days
+    params: [starts_at, ends_at]
+    enforced_with: 422
+    source: https://docs.koahlabs.com/api/reporting
+    notes: >-
+      A range bound, not a rate limit — recorded because it is the only published
+      quantitative constraint on the API.
+sdk_side:
+  ad_requests:
+    throttling_published: false
+    notes: >-
+      The client ad SDKs cache and dedupe ad requests on a cacheKey, which bounds
+      request volume in practice, but Koah publishes no per-publisher query quota.
+    source: https://docs.koahlabs.com/concepts/how-it-works
+  conversion_pixel:
+    dedup_window: 24 hours on event_id
+    notes: Event dedup, not a rate limit.
+cross_links:
+  errors: errors/koah-labs-problem-types.yml
+  conventions: conventions/koah-labs-conventions.yml
+gaps:
+- No numeric limit, window, or burst published.
+- No RateLimit/Retry-After headers documented or observed.
+- No documented behavior on sustained overage.

@@ -11,6 +11,22 @@ notes: >-
   is no documented application/problem+json envelope, no machine-readable error
   code registry, and no documented error body shape — only the HTTP status and a
   short label. Captured verbatim; nothing about the response body is inferred.
+observed_envelope:
+  method: probed
+  checked: '2026-08-13'
+  request: GET https://app.koah.ai/api/publishers (no Authorization header)
+  status: 401
+  content_type: application/json; charset=utf-8
+  body: '{"error":"Unauthorized"}'
+  shape: 'single top-level string field: error'
+  documented: false
+  notes: >-
+    The published reference documents no error body at all. This envelope was
+    observed on a live unauthenticated request, so it is evidence of one status on
+    one endpoint — not a provider contract. Whether every error uses the same
+    {"error": string} shape, and whether any machine-readable code accompanies it,
+    remains undocumented. x-request-id is returned on the same response and is the
+    only correlation handle available for support.
 problems:
 - status: 400
   title: Bad request
@@ -43,8 +59,8 @@ problems:
   source: https://docs.koahlabs.com/api/publishers
   notes: >-
     A 429 is documented but no numeric limit, window, or RateLimit/Retry-After
-    response header is published. No rate-limits artifact is written because no
-    limit values exist to record.
+    response header is published or observed. Recorded as limit_count 0 in
+    rate-limits/koah-labs-rate-limits.yml.
 gaps:
 - No error body schema published.
 - No stable machine-readable error codes.

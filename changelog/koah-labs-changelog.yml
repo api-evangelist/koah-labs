@@ -1,4 +1,4 @@
-generated: '2026-07-19'
+generated: '2026-08-13'
 method: searched
 source: https://www.koahlabs.com/changelog
 scheme:
@@ -7,10 +7,19 @@ scheme:
 current:
   api: beta (unversioned)
   javascript_sdk: v2
-  ios_sdk: 0.9.1
-  android_sdk: 0.2.1
+  ios_sdk: 0.10.0
+  android_sdk: 0.3.0
   flutter_sdk: 0.1.3
   react_native_sdk: 0.10.1
+  versions_verified: '2026-08-13'
+  versions_source: registry metadata (see packages/koah-labs-packages.yml)
+cadence_gap:
+  observed: '2026-08-13'
+  finding: >-
+    The product changelog's most recent entry is 2026-07-17, but the iOS SDK
+    (0.10.0) and Android SDK (0.3.0) were both released on 2026-08-13. Releases
+    are shipping ahead of the changelog, so the changelog alone understates the
+    current state of the SDKs.
 sdk_changelogs:
 - {platform: ios, url: https://docs.koahlabs.com/sdk/ios/changelog}
 - {platform: android, url: https://docs.koahlabs.com/sdk/android/changelog}
@@ -21,6 +30,20 @@ notes: >-
   the source of truth and extends back to 2025-07-09. Entries below are the most
   recent published items captured on 2026-07-19.
 entries:
+- date: '2026-07-17'
+  title: A Redesigned Dashboard
+  breaking: false
+  highlights: >-
+    Refreshed visual system across advertiser and publisher views, mobile drawer
+    navigation, faster tab switching, and a framed app shell.
+- date: '2026-07-15'
+  title: Web SDK Age Signals
+  breaking: false
+  platforms: [web]
+  highlights: >-
+    Self-reported age can be passed through the Web SDK for age-aware ad matching —
+    precise age, standard range, or custom min/max; validated, persisted across
+    sessions and visitor-cookie changes, and clearable to unknown.
 - date: '2026-07-15'
   title: Build Every Format in the Dashboard
   breaking: false

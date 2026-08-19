@@ -35,7 +35,17 @@ sla:
   uptime_target: null
 status_page: null
 status_page_probes:
-- {url: 'https://status.koahlabs.com', status: does-not-resolve}
+- {url: 'https://status.koahlabs.com', status: does-not-resolve, checked: '2026-08-13'}
+- {url: 'https://status.koah.ai', status: does-not-resolve, checked: '2026-08-13'}
+- url: https://koahlabs.statuspage.io
+  status: 200
+  verdict: false-positive
+  checked: '2026-08-13'
+  detail: >-
+    Returns HTTP 200 but the body is Atlassian's Statuspage marketing site
+    (title "Real-Time Incident Communication with Statuspage"), and
+    /api/v2/summary.json redirects to statuspage.io. No Koah tenant exists —
+    a 200 here is not a status page and no StatusPage pointer is wired.
 sdk_versioning:
   scheme: semver
   channels:
