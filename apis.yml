@@ -9,6 +9,17 @@ description: 'Koah Labs operates Koah, an advertising network purpose-built for 
   (queries, fill rate, impressions, clicks, CTR, eCPC, eCPM, revenue). Koah publishes agent-native
   developer surfaces including llms.txt on both its marketing and docs hosts and a first-party Claude
   Agent Skill for integration.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
