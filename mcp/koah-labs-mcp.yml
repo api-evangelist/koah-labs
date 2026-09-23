@@ -23,7 +23,7 @@ searched:
   result: 'no MCP repo (public repos: OpenClio, skills, swift-package-manager-koah-ads, swift-package-manager-koah-ads-admob)'
   checked: '2026-08-13'
 - surface: npm registry
-  result: 'keyword search "koah" returns exactly one package, koah-react-native — no MCP package'
+  result: keyword search "koah" returns exactly one package, koah-react-native — no MCP package
   checked: '2026-08-13'
 - surface: https://registry.modelcontextprotocol.io/v0/servers?search=koah
   result: 0 servers
@@ -83,13 +83,6 @@ auth:
   detail: ../authentication/koah-labs-authentication.yml
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
-  verified: searched
-  checked: '2026-08-13'
-  source: >-
-    Re-searched 2026-08-13 across both llms.txt files, the koahlabs GitHub org, an
-    npm keyword search, the official MCP registry (0 results) and direct /mcp
-    probes on both hosts. Nobody ships a Koah MCP server, remote or stdio.
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census
