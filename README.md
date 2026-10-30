@@ -64,6 +64,112 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Koah Labs is a company surfaced as a portfolio company of forerunner-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+Koah Labs operates Koah, an advertising network purpose-built for AI applications. It ships two products: an Ad SDK that lets publishers monetize chat and agent experiences with native, intent-matched ad formats (action card, image card, poll, expandable, catalog, side rail) across JavaScript, React, React Native, Flutter, iOS and Android; and Conversion Tracking, a pixel that lets advertisers measure ROI across nine standard event types. A beta REST API at app.koah.ai/api lets publisher teams create and manage publishers programmatically and pull daily performance reports (queries, fill rate, impressions, clicks, CTR, eCPC, eCPM, revenue). Koah publishes agent-native developer surfaces including llms.txt on both its marketing and docs hosts and a first-party Claude Agent Skill for integration.
 
-Backed by: forerunner-ventures — https://www.koahlabs.com
+**Areas:** Company · Artificial Intelligence · Advertising · Ad Network · Monetization · Conversion Tracking · SDK · Agents
+
+## Koah Labs on APIs.io
+
+Everything profiled for Koah Labs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/koah-labs/](https://apis.io/providers/koah-labs/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Koah API](https://apis.io/apis/koah-labs/koah-api/) — Beta REST API for Koah publisher team accounts. Resource-oriented URLs, JSON responses, standard HTTP verbs and status codes, Bearer token authentication.…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [koah-labs-mcp.yml](https://apis.io/servers/koah-labs/koah-labs-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Koah Labs Authentication](https://apis.io/security/koah-labs/koah-labs-authentication/)
+- [Koah Labs Domain Security](https://apis.io/security/koah-labs/koah-labs-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Koah Labs Plans Pricing](https://apis.io/plans/koah-labs/koah-labs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Koah Labs Rate Limits](https://apis.io/rate-limits/koah-labs/koah-labs-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.koahlabs.com)
+- [Documentation](https://docs.koahlabs.com)
+- [Getting started](https://docs.koahlabs.com/quickstart)
+- [API reference](https://docs.koahlabs.com/api)
+- [Sign up](https://app.koah.ai)
+- [Support](https://www.koahlabs.com/contact)
+- [Changelog](https://www.koahlabs.com/changelog)
+- [Blog](https://www.koahlabs.com/blog)
+- [Terms of service](https://www.koahlabs.com/legal/terms)
+- [Privacy policy](https://www.koahlabs.com/legal/privacy-policy)
+- [GitHub](https://github.com/koahlabs)
+
+## API Evangelist rating
+
+**Kin Score 34.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 78.6 |
+| Access clarity | 21.1 |
+
+**Agent readiness 16.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | yes |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/koah-labs/](https://apis.io/providers/koah-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Koah Labs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/koah-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
